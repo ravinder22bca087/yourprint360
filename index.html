@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YourPrint360 | AI-Powered Printing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: #1e1e1e;
+      color: white;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.5em;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00c6ff;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1612831190606-59be7bfa90f5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      padding: 5em 2em;
+      text-align: center;
+      background-attachment: fixed;
+      animation: gradientAnimation 8s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background: linear-gradient(45deg, #00c6ff, #0072ff); }
+      50% { background: linear-gradient(45deg, #ff0072, #ffcb00); }
+      100% { background: linear-gradient(45deg, #00c6ff, #0072ff); }
+    }
+
+    .hero h1, .hero p, .hero button {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    .hero h1 {
+      animation-delay: 0.3s;
+    }
+
+    .hero p {
+      animation-delay: 0.6s;
+    }
+
+    .hero button {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hero h1 {
+      font-size: 2.5em;
+      background: rgba(0,0,0,0.5);
+      display: inline-block;
+      padding: 0.3em 1em;
+      border-radius: 10px;
+    }
+
+    .hero p {
+      margin-top: 1em;
+      font-size: 1.2em;
+      background: rgba(0,0,0,0.4);
+      display: inline-block;
+      padding: 0.5em 1em;
+      border-radius: 10px;
+    }
+
+    .hero button {
+      margin-top: 2em;
+      padding: 0.8em 1.5em;
+      background: white;
+      color: #0072ff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
+      background: #e2e2e2;
+    }
+
+    section {
+      padding: 3em 2em;
+      background: white;
+      text-align: center;
+    }
+
+    .features ul {
+      list-style: none;
+    }
+
+    .features li {
+      font-size: 1.2em;
+      margin-bottom: 0.8em;
+    }
+
+    .membership-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .plan {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .plan h3 {
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .plan p {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+    }
+
+    .plan ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .plan li {
+      margin-bottom: 0.5em;
+    }
+
+    .product-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .product-gallery div {
+      position: relative;
+      width: 300px;
+      overflow: hidden;
+    }
+
+    .product-gallery img {
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .product-gallery div:hover img {
+      transform: scale(1.1);
+    }
+
+    .product-gallery div:hover p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-gallery p {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 0.5em;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .ai-form {
+      max-width: 500px;
+      margin: 2em auto;
+      text-align: left;
+      background: #f9f9f9;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .ai-form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.5em;
+    }
+
+    .ai-form input, .ai-form select, .ai-form textarea {
+      width: 100%;
+      padding: 0.6em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .ai-form button {
+      background: #0072ff;
+      color: white;
+      padding: 0.7em 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .ai-form button:hover {
+      background: #005ecb;
+    }
+
+    .ai-output {
+      margin-top: 1.5em;
+      background: #e0f7ff;
+      padding: 1em;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #1e1e1e;
+      color: white;
+      text-align: center;
+      padding: 2em;
+    }
+
+    footer a {
+      color: #00c6ff;
+      text-decoration: none;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 2em;
+      right: 2em;
+      background-color: #00c6ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 1em;
+      font-size: 1.5em;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .floating-btn:hover {
+      background-color: #0072ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">YourPrint360</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#memberships">Memberships</a>
+      <a href="#products">Products</a>
+      <a href="#ai">AI Designer</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>AI-Powered Printing Solutions</h1>
+    <p>Customize business cards, mugs, t-shirts & more. Fast, easy, affordable.</p>
+    <button onclick="scrollToSection('memberships')">Explore Memberships</button>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Why Choose YourPrint360?</h2>
+    <ul>
+      <li>🔍 AI-based custom design with RAG technology</li>
+      <li>🧾 Seamless B2B/B2C printing solutions</li>
+      <li>🎁 Loyalty rewards & personalized offers</li>
+      <li>🌱 Eco-friendly sourcing & efficient logistics</li>
+    </ul>
+  </section>
+
+  <section id="memberships">
+    <h2>Membership Plans</h2>
+    <div class="membership-grid">
+      <div class="plan">
+        <h3>Silver</h3>
+        <p><strong>₹699/year</strong></p>
+        <ul>
+          <li>10% discount</li>
+          <li>Standard delivery</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Gold</h3>
+        <p><strong>₹999/year</strong></p>
+        <ul>
+          <li>15% discount</li>
+          <li>Free express shipping</li>
+          <li>Early access to sales</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Platinum</h3>
+        <p><strong>₹1,599/year</strong></p>
+        <ul>
+          <li>20% discount</li>
+          <li>Next-day delivery</li>
+          <li>Free AI templates & support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2>Our Custom Products</h2>
+    <div class="product-gallery">
+      <div>
+        <img src="" alt="Custom T-Shirt">
+        <p></p>
+      </div>
+      <div>
+        <img src="" alt="Printed Mug">
+        <p></p>
+      </div>
+      <div>
+        <img src="" alt="Flyers & Cards">
+        <p></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <h2>🧠 Your AI Design Assistant</h2>
+    <p>Describe what you want to print and our AI will give you ideas instantly!</p>
+    <div class="ai-form">
+      <label for="product">Select Product</label>
+      <select id="product">
+        <option value="T-Shirt">T-Shirt</option>
+        <option value="Mug">Mug</option>
+        <option value="Flyer">Flyer</option>
+        <option value="Business Card">Business Card</option>
+      </select>
+
+      <label for="idea">Enter Your Idea</label>
+      <textarea id="idea" rows="4" placeholder="E.g. A motivational quote with minimal design..."></textarea>
+
+      <button onclick="generateDesign()">Generate Design</button>
+
+      <div id="aiOutput" class="ai-output" style="display: none;"></div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>📧 Contact us: <a href="mailto:info@yourprint360.com">info@yourprint360.com</a></p>
+    <p>&copy; 2025 YourPrint360. All rights reserved.</p>
+  </footer>
+
+  <button class="floating-btn" onclick="scrollToSection('ai')">🧠 Design AI</button>
+
+  <script>
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        window.scrollTo({
+          top: section.offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function generateDesign() {
+      const product = document.getElementById('product').value;
+      const idea = document.getElementById('idea').value;
+      const output = document.getElementById('aiOutput');
+      output.style.display = 'block';
+      output.innerHTML = `<strong>Design Generated for ${product}</strong><p>Idea: ${idea}</p><p>Your design is now ready to download.</p>`;
+    }
+  </script>
+</body>
+</html>
